@@ -1,6 +1,6 @@
 import { initializeApp, getApps, getApp } from 'firebase/app'
 import { getAuth } from 'firebase/auth'
-import { getFirestore } from 'firebase/firestore/lite'
+import { getFirestore, collection } from 'firebase/firestore'
 import { getStorage } from 'firebase/storage'
 
 const firebaseConfig = {
@@ -15,6 +15,7 @@ const firebaseConfig = {
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApp()
 const auth = getAuth(app)
 const db = getFirestore(app)
+const songsCollection = collection(db, 'songs')
 const storage = getStorage()
 
-export { auth, app, db, storage }
+export { auth, app, db, songsCollection, storage }
