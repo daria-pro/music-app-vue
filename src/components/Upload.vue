@@ -44,7 +44,6 @@
 import { storage, auth, songsCollection } from '@/includes/firebase'
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage'
 import { addDoc, getDoc } from 'firebase/firestore'
-import { get } from 'firebase/database'
 
 export default {
   name: 'Upload',

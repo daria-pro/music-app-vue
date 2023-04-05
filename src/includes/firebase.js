@@ -16,6 +16,7 @@ const app = !getApps().length ? initializeApp(firebaseConfig) : getApp()
 const auth = getAuth(app)
 const db = getFirestore(app)
 const songsCollection = collection(db, 'songs')
+const commentsCollection = collection(db, 'comments')
 const storage = getStorage()
 
-export { auth, app, db, songsCollection, storage }
+export { auth, app, db, songsCollection, commentsCollection, storage }
