@@ -124,21 +124,23 @@ export default {
       })
     }
   },
-  async created() {
-    const songRef = doc(songsCollection, this.$route.params.id)
+  async beforeRouteEnter(to, from, next) {
+    const songRef = doc(songsCollection, to.params.id)
     const songSnapshot = await getDoc(songRef)
 
-    if (!songSnapshot.exists()) {
-      this.$router.push({ name: 'home' })
-      return
-    }
+    next((vm) => {
+      if (!songSnapshot.exists()) {
+        vm.$router.push({ name: 'home' })
+        return
+      }
 
-    const { sort } = this.$route.query
+      const { sort } = vm.$route.query
 
-    this.sort = sort === '1' || sort === '2' ? sort : '1'
+      vm.sort = sort === '1' || sort === '2' ? sort : '1'
 
-    this.song = songSnapshot.data()
-    this.getComments()
+      vm.song = songSnapshot.data()
+      vm.getComments()
+    })
   },
 
   methods: {
